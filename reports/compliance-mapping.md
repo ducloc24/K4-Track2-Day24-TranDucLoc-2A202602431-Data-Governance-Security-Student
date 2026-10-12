@@ -1,10 +1,8 @@
-# Compliance mapping — điền trong checkpoint 5
+# Compliance mapping - hoc tap, khong phai chung nhan tuan thu
 
-| Nguồn / yêu cầu | Control đã làm | Evidence file:dòng | Giới hạn |
+| Nguon / chu de | Control da lam | Bang chung file:dong | Gioi han |
 |---|---|---|---|
-| Luật 91/2025/QH15 | | | |
-| NĐ 356/2025/NĐ-CP | | | |
-| Luật AI 134/2025/QH15 | | | |
-| OWASP ASI01, ASI03, ASI04 | | | |
-
-Chỉ ghi điều khoản cụ thể khi đã đối chiếu văn bản gốc. Mô phỏng kỹ thuật không tự chứng minh tuân thủ pháp luật.
+| [Luat 91/2025/QH15 - Bao ve du lieu ca nhan](https://vanban.chinhphu.vn/?docid=214590&pageid=27160) | PII detect/redact, policy restricted va deny egress, OBO va ledger | `agent/pii.py:9-43`, `agent/policy.py:36-65`, `agent/runner.py:46-54`; `reports/attack-after.log` 0 byte | Chua doi chieu dieu khoan cu the; fixture synthetic va mock khong chung minh tuan thu phap ly |
+| [Nghi dinh 356/2025/ND-CP](https://vanban.chinhphu.vn/?classid=1&docid=216387&pageid=27160&typegroupid=4) | Tach Run A/Run B, gioi han principal va ghi audit decision | `agent/runner.py:56-76`, `agent/ledger.py:17-47` | Chua doi chieu dieu khoan cu the; chua phai DPIA hay danh gia cua co quan co tham quyen |
+| [Luat 134/2025/QH15 - Tri tue nhan tao](https://vanban.chinhphu.vn/?classid=1&docid=216334&pageid=27160) | Kiem soat prompt injection, scope/OBO, egress va supply-chain scan | `agent/runner.py:58-81`, `.pre-commit-config.yaml:1-7`, `reports/secrets-incident.md:1-8` | Chua doi chieu dieu khoan cu the; chua co danh gia rui ro production |
+| [OWASP ASI01/03/04](https://genai.owasp.org/2025/12/09/owasp-top-10-for-agentic-applications-the-benchmark-for-agentic-security-in-the-age-of-autonomous-ai/) | ASI01: lure/injection tests; ASI03: principal/scope/expiry; ASI04: lock, Gitleaks va hook | `tests/test_injection.py:69-126`, `agent/policy.py:47-65`, `requirements.lock`, `.pre-commit-config.yaml:1-7` | Mapping ky thuat hoc tap, khong phai danh gia bao mat doc lap |
